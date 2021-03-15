@@ -1,0 +1,17 @@
+<p>
+  <strong>Location:</strong>
+  <%= @bag_location.location %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @bag_location.event_id %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @bag_location.customer_id %>
+</p>
+
+<%= link_to 'Edit', edit_event_bag_location_path(@event, @bag_location) %> |
+<%= link_to 'Back', event_bag_location_path(@event) %>

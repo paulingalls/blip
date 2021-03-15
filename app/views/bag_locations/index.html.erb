@@ -1,0 +1,29 @@
+<h1>Bag Locations for <%= @event.name %></h1>
+<h3><%= @event.date %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th colspan="3">Customer</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bag_locations.each do |bag_location| %>
+      <tr>
+        <td><%= bag_location.location %></td>
+        <td><%= bag_location.customer.first_name %></td>
+        <td><%= bag_location.customer.last_name %></td>
+        <td><%= bag_location.customer.phone_number %></td>
+        <td><%= link_to 'Edit', edit_event_bag_location_path(@event, bag_location) %></td>
+        <td><%= link_to 'Delete', [@event, bag_location], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bag Location', new_event_bag_location_path(@event) %>

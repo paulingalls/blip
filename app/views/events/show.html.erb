@@ -1,0 +1,36 @@
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<h2>Bag Locations</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Location</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @event.bag_locations.each do |bag_location| %>
+    <tr>
+      <td><%= bag_location.location %></td>
+      <td><%= bag_location.customer.first_name %></td>
+      <td><%= bag_location.customer.last_name %></td>
+      <td><%= bag_location.customer.phone_number %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Add Bag', event_bag_locations_path(@event) %> |
+<%= link_to 'Back', events_path %>

@@ -1,0 +1,36 @@
+<%= form_with(model: [@event, bag_location]) do |form| %>
+  <% if bag_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bag_location.errors.count, "error") %> prohibited this bag_location from being saved:</h2>
+
+      <ul>
+        <% bag_location.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <%= form.fields_for :customer, @bag_location.customer do |customer_form| %>
+    <div class="field">
+      <%= customer_form.label :first_name %>
+      <%= customer_form.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= customer_form.label :last_name %>
+      <%= customer_form.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= customer_form.label :phone_number %>
+      <%= customer_form.text_field :phone_number %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

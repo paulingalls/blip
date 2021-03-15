@@ -1,0 +1,9 @@
+<h1>Welcome to BLIP</h1>
+
+<% if current_user.nil? %>
+  <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+<% else %>
+  <%= link_to events_path, class: 'login-button' do %>Go to Events<% end %>
+  <%= link_to('Edit registration', edit_user_registration_path) %>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+<% end %>
