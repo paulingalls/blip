@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }

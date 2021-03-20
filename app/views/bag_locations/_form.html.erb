@@ -11,21 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="mb-3">
     <%= form.label :location %>
     <%= form.text_field :location %>
   </div>
 
   <%= form.fields_for :customer, @bag_location.customer do |customer_form| %>
-    <div class="field">
+    <div class="mb-3">
       <%= customer_form.label :first_name %>
       <%= customer_form.text_field :first_name %>
     </div>
-    <div class="field">
+    <div class="mb-3">
       <%= customer_form.label :last_name %>
       <%= customer_form.text_field :last_name %>
     </div>
-    <div class="field">
+    <div class="mb-3">
       <%= customer_form.label :phone_number %>
       <%= customer_form.text_field :phone_number %>
     </div>
