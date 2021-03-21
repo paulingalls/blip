@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -29,9 +30,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'cancancan'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'rack-timeout'
 gem 'rails_admin', '~> 2.0'
 gem 'twilio-ruby', '~> 5.49.0'
-gem "rack-timeout"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
