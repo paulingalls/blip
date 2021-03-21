@@ -30,6 +30,8 @@ gem 'cancancan'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rails_admin', '~> 2.0'
+gem 'twilio-ruby', '~> 5.49.0'
+gem "rack-timeout"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
