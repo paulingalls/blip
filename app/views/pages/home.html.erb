@@ -3,7 +3,12 @@
 <% if current_user.nil? %>
   <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
 <% else %>
-  <%= link_to events_path, class: 'login-button' do %>Go to Events<% end %>
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  <h3>Latest Events: </h3>
+  <div class="list-group">
+  <% @events.each do |event| %>
+    <%= link_to(event.name, event_path(event), class: 'list-group-item list-group-item-action' )%>
+  <% end %>
+    <%= link_to events_path, class: 'list-group-item list-group-item-action' do %>All Events ><% end %>
+  </div>
+
 <% end %>

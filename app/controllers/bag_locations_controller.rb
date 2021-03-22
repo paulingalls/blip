@@ -31,7 +31,7 @@ class BagLocationsController < ApplicationController
 
     respond_to do |format|
       if @bag_location.save
-        format.html { redirect_to event_bag_locations_path(@event), notice: 'Bag location was successfully created.' }
+        format.html { redirect_to event_path(@event), notice: 'Bag location was successfully created.' }
         format.json { render :show, status: :created, location: @bag_location }
       else
         format.html { render :new, status: :unprocessable_entity }

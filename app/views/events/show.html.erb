@@ -1,27 +1,36 @@
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @event.name %>
-</p>
+  <%= link_to edit_event_path(@event), class: '' do %>
+    <%= fa_icon "edit" %>
+  <% end %>
+</h1>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
+<div class="row">
+  <h4><%= @event.date %></h4>
+</div>
+
+<div class="py-5">
+  <%= link_to new_event_bag_location_path(@event) do %>
+    <button type="button" class="px-5 btn btn-primary">Add Bag</button>
+  <% end %>
+</div>
 
 <h2>Bag Locations</h2>
-<table>
+<table class="table">
   <thead>
   <tr>
-    <th>Location</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone</th>
+    <th scope="col">#</th>
+    <th scope="col">Location</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Phone</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @event.bag_locations.each do |bag_location| %>
+  <% @event.bag_locations.each_with_index do |bag_location, index| %>
     <tr>
+      <th scope="row"><%= index + 1 %></th>
       <td><%= bag_location.location %></td>
       <td><%= bag_location.customer.first_name %></td>
       <td><%= bag_location.customer.last_name %></td>
@@ -31,6 +40,8 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Add Bag', event_bag_locations_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="py-5">
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+  <%= link_to 'Add Bag', event_bag_locations_path(@event) %> |
+  <%= link_to 'All Events', events_path %>
+</div>

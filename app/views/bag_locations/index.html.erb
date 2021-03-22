@@ -1,29 +1,40 @@
-<h1>Bag Locations for <%= @event.name %></h1>
-<h3><%= @event.date %></h3>
+<h1><%= @event.name %></h1>
+<p><%= @event.date %></p>
+<h2>Bag Locations</h2>
 
-<table>
+<table class="table">
   <thead>
-    <tr>
-      <th>Location</th>
-      <th colspan="3">Customer</th>
-      <th colspan="2"></th>
-    </tr>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Location</th>
+    <th scope="col">Name</th>
+    <th scope="col">Phone</th>
+    <th scope="col" colspan="2"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @bag_locations.each do |bag_location| %>
-      <tr>
-        <td><%= bag_location.location %></td>
-        <td><%= bag_location.customer.first_name %></td>
-        <td><%= bag_location.customer.last_name %></td>
-        <td><%= bag_location.customer.phone_number %></td>
-        <td><%= link_to 'Edit', edit_event_bag_location_path(@event, bag_location) %></td>
-        <td><%= link_to 'Delete', [@event, bag_location], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @event.bag_locations.each_with_index do |bag_location, index| %>
+    <tr>
+      <th scope="row"><%= index + 1 %></th>
+      <td><%= bag_location.location %></td>
+      <td><%= bag_location.customer.first_name + ' ' + bag_location.customer.last_name %></td>
+      <td><%= bag_location.customer.phone_number %></td>
+      <td>
+        <%= link_to edit_event_bag_location_path(@event, bag_location) do %>
+          <%= fa_icon "edit" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to [@event, bag_location], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <%= fa_icon "trash" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Bag Location', new_event_bag_location_path(@event) %>
+<%= link_to new_event_bag_location_path(@event) do %>
+  <button type="button" class="px-5 btn btn-primary">Add Bag</button>
+<% end %>

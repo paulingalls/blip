@@ -12,25 +12,25 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+    <%= form.label :location, class: 'form-label'%>
+    <%= form.text_field :location, class: 'form-control' %>
   </div>
 
   <%= form.fields_for :customer, @bag_location.customer do |customer_form| %>
     <div class="mb-3">
-      <%= customer_form.label :first_name %>
-      <%= customer_form.text_field :first_name %>
+      <%= customer_form.label :first_name, class: 'form-label' %>
+      <%= customer_form.text_field :first_name, class: 'form-control' %>
     </div>
     <div class="mb-3">
-      <%= customer_form.label :last_name %>
-      <%= customer_form.text_field :last_name %>
+      <%= customer_form.label :last_name, class: 'form-label' %>
+      <%= customer_form.text_field :last_name, class: 'form-control' %>
     </div>
     <div class="mb-3">
-      <%= customer_form.label :phone_number %>
-      <%= customer_form.telephone_field :phone_number %>
+      <%= customer_form.label :phone_number, class: 'form-label' %>
+      <%= customer_form.telephone_field :phone_number, class: 'form-control' %>
     </div>
   <% end %>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
