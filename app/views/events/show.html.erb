@@ -21,8 +21,7 @@
   <tr>
     <th scope="col">#</th>
     <th scope="col">Location</th>
-    <th scope="col">First Name</th>
-    <th scope="col">Last Name</th>
+    <th scope="col">Name</th>
     <th scope="col">Phone</th>
   </tr>
   </thead>
@@ -30,18 +29,17 @@
   <tbody>
   <% @event.bag_locations.each_with_index do |bag_location, index| %>
     <tr>
-      <th scope="row"><%= index + 1 %></th>
+      <th scope="row"><%= link_to (index + 1).to_s, [@event, bag_location] %></th>
       <td><%= bag_location.location %></td>
-      <td><%= bag_location.customer.first_name %></td>
-      <td><%= bag_location.customer.last_name %></td>
-      <td><%= bag_location.customer.phone_number %></td>
+      <td><%= bag_location.customer.full_name %></td>
+      <td><%= bag_location.customer.formatted_phone %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
 <div class="py-5">
-  <%= link_to 'Edit', edit_event_path(@event) %> |
-  <%= link_to 'Add Bag', event_bag_locations_path(@event) %> |
+  <%= link_to 'Edit Event', edit_event_path(@event) %> |
+  <%= link_to 'All Bags', event_bag_locations_path(@event) %> |
   <%= link_to 'All Events', events_path %>
 </div>

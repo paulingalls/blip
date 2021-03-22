@@ -10,8 +10,31 @@
 
 <p>
   <strong>Phone number:</strong>
-  <%= @customer.phone_number %>
+  <%= @customer.formatted_phone %>
 </p>
+
+<strong>Events Attended</strong>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @customer.events.each_with_index do |event, index| %>
+    <tr>
+      <th scope="row"><%= link_to (index + 1).to_s, event %></th>
+      <td><%= event.name %></td>
+      <td><%= event.date %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

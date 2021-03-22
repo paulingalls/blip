@@ -18,8 +18,8 @@
     <tr>
       <th scope="row"><%= index + 1 %></th>
       <td><%= bag_location.location %></td>
-      <td><%= bag_location.customer.first_name + ' ' + bag_location.customer.last_name %></td>
-      <td><%= bag_location.customer.phone_number %></td>
+      <td><%= bag_location.customer.full_name %></td>
+      <td><%= bag_location.customer.formatted_phone %></td>
       <td>
         <%= link_to edit_event_bag_location_path(@event, bag_location) do %>
           <%= fa_icon "edit" %>

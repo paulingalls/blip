@@ -26,7 +26,8 @@ class BagLocationsController < ApplicationController
   def create
     @bag_location = @event.bag_locations.build(bag_location_params)
     phone = params['bag_location']['customer_attributes']['phone_number']
-    existing_customer = Customer.find_by_phone_number(phone)
+    formatted_phone = Phonelib.parse(phone.to_s).full_e164.presence
+    existing_customer = Customer.find_by_phone_number(formatted_phone)
     @bag_location.customer = existing_customer if existing_customer
 
     respond_to do |format|
