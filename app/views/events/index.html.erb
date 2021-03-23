@@ -16,9 +16,16 @@
         <th scope="row"><%= link_to (index + 1).to_s, event %></th>
         <td><%= event.name %></td>
         <td><%= event.date %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to edit_event_path(event) do %>
+            <%= fa_icon "edit" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

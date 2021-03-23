@@ -12,7 +12,14 @@ class BagLocation < ApplicationRecord
     client.messages.create(
       from: ENV.fetch('TWILIO_PHONE_NUMBER'),
       to: customer.phone_number,
-      body: 'Bag Location Created'
+      body: created_message
     )
+  end
+
+  def created_message
+    message = Message.find_by_key(Message::BAG_LOCATION_CREATED_KEY).value
+    message.sub! '%first_name%', customer.first_name
+    message.sub! '%bag_location%', location
+    message
   end
 end

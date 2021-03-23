@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Messages</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Key</th>
+      <th scope="col">Value</th>
+      <th  scope="col" colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each_with_index do |message, index| %>
+      <tr>
+        <th scope="row"><%= link_to (index + 1).to_s, message %></th>
+        <td><%= message.key %></td>
+        <td><%= message.value %></td>
+        <td>
+          <%= link_to edit_message_path(message) do %>
+            <%= fa_icon "edit" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to message, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to new_message_path do %>
+  <button type="button" class="px-5 btn btn-primary">Add Message</button>
+<% end %>
