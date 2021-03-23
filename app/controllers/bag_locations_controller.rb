@@ -58,8 +58,16 @@ class BagLocationsController < ApplicationController
   def destroy
     @bag_location.destroy
     respond_to do |format|
-      format.html { redirect_to event_bag_locations_path(@event), notice: 'Bag location was successfully destroyed.' }
+      format.html { redirect_to event_bag_locations_path(@event, @bag_location), notice: 'Bag location was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def remind
+    @bag_location.remind_customer
+    respond_to do |format|
+      format.html { redirect_to event_path(@event), notice: 'Reminder sent.' }
+      format.json { render :show, status: :ok, location: @bag_location }
     end
   end
 

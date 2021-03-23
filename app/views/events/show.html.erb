@@ -23,6 +23,7 @@
     <th scope="col">Location</th>
     <th scope="col">Name</th>
     <th scope="col">Phone</th>
+    <th scope="col">Remind</th>
   </tr>
   </thead>
 
@@ -33,6 +34,11 @@
       <td><%= bag_location.location %></td>
       <td><%= bag_location.customer.full_name %></td>
       <td><%= bag_location.customer.formatted_phone %></td>
+      <td>
+        <%= link_to remind_event_bag_location_path(@event, bag_location) do %>
+          <%= fa_icon "bell" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
