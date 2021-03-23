@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class EventsController < ApplicationController
   load_and_authorize_resource
   before_action :set_event, only: %i[show edit update destroy]
@@ -50,6 +51,14 @@ class EventsController < ApplicationController
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def closing
+    @event.bag_locations.each(&:remind_customer)
+    respond_to do |format|
+      format.html { redirect_to @event, notice: 'Reminders sent.' }
       format.json { head :no_content }
     end
   end

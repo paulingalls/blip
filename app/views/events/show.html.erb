@@ -44,6 +44,11 @@
   </tbody>
 </table>
 
+<%= link_to closing_event_path do %>
+  <button type="button" class="px-5 btn btn-danger">Remind Everyone!</button>
+<% end %>
+
+
 <div class="py-5">
   <%= link_to 'Edit Event', edit_event_path(@event) %> |
   <%= link_to 'All Bags', event_bag_locations_path(@event) %> |

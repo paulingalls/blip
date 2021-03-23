@@ -33,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to new_event_path do %>
+  <button type="button" class="px-5 btn btn-primary">New Event</button>
+<% end %>

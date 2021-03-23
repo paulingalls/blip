@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :customers
   resources :events do
+    get 'closing', on: :member
     resources :bag_locations do
       member do
         get 'remind'
