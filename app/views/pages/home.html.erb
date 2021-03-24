@@ -1,14 +1,22 @@
-<h1>Welcome to BLIP</h1>
+<div class="mb-3 align-content-center">
+  <br/>
+  <img src="logo.png" width="267" height="129" />
 
-<% if current_user.nil? %>
-  <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<% else %>
-  <h3>Latest Events: </h3>
-  <div class="list-group">
-  <% @events.each do |event| %>
-    <%= link_to(event.name, event_path(event), class: 'list-group-item list-group-item-action' )%>
+  <h1 class="py-5">Welcome to BLIP</h1>
+
+  <% if current_user.nil? %>
+    <%= link_to new_user_session_path, class: 'login-button' do %>
+      <button class="btn btn-primary px-5">Sign In</button>
+    <% end %>
+  <% else %>
+    <h3>Latest Events: </h3>
+    <div class="list-group">
+    <% @events.each do |event| %>
+      <%= link_to(event.name, event_path(event), class: 'list-group-item list-group-item-action' )%>
+    <% end %>
+      <%= link_to events_path, class: 'list-group-item list-group-item-action' do %>All Events ><% end %>
+    </div>
+
   <% end %>
-    <%= link_to events_path, class: 'list-group-item list-group-item-action' do %>All Events ><% end %>
-  </div>
 
-<% end %>
+</div>
