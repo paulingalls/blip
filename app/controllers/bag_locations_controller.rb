@@ -84,7 +84,7 @@ class BagLocationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def bag_location_params
-    params.require(:bag_location).permit(:location, :event_id,
+    params.require(:bag_location).permit(:location, :event_id, :claim_number,
                                          customer_attributes: %i[id event_id first_name last_name phone_number])
   end
 end

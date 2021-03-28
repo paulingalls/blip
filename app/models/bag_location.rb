@@ -25,17 +25,23 @@ class BagLocation < ApplicationRecord
     )
   end
 
+  private
+
   def created_message
     message = Message.find_by_key(Message::BAG_LOCATION_CREATED_KEY).value
-    message.sub! '%first_name%', customer.first_name
-    message.sub! '%bag_location%', location
-    message
+    filter_message(message)
   end
 
   def reminder_message
     message = Message.find_by_key(Message::REMINDER_KEY).value
+    filter_message(message)
+  end
+
+  def filter_message(message)
     message.sub! '%first_name%', customer.first_name
+    message.sub! '%last_name%', customer.last_name
     message.sub! '%bag_location%', location
+    message.sub! '%claim_number%', claim_number.to_s(10)
     message
   end
 end

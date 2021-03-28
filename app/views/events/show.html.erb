@@ -35,7 +35,7 @@
   <% @event.bag_locations.each_with_index do |bag_location, index| %>
     <tr>
       <th scope="row"><%= link_to (index + 1).to_s, [@event, bag_location] %></th>
-      <td><%= bag_location.location %></td>
+      <td><%= bag_location.location %>-<%= bag_location.claim_number %></td>
       <td><%= bag_location.customer.full_name %></td>
       <td><%= bag_location.customer.formatted_phone %></td>
       <td>
