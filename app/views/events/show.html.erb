@@ -9,6 +9,10 @@
   <h4><%= @event.date %></h4>
 </div>
 
+<div class="row">
+  <h5><%= format_currency(@event.cost) %></h5>
+</div>
+
 <div class="py-5">
   <%= link_to new_event_bag_location_path(@event) do %>
     <button type="button" class="px-5 btn btn-primary">Add Bag</button>

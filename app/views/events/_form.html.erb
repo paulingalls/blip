@@ -17,6 +17,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :cost, class: 'form-label' %>
+    <%= form.number_field :cost, value: number_to_currency(form.object.cost.to_f, delimiter: '', unit: ''), step: 0.01, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :date, class: 'form-label' %>
     <%= form.date_select :date, class: 'form-control' %>
   </div>
