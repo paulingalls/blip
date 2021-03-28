@@ -22,8 +22,10 @@
           <% end %>
         </td>
         <td>
-          <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <%= fa_icon "trash" %>
+          <% if can? :access, rails_admin %>
+            <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= fa_icon "trash" %>
+            <% end %>
           <% end %>
         </td>
       </tr>

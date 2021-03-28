@@ -31,8 +31,10 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     user ||= User.new
-    can :manage, :Customer
-    can :manage, :BagLocation
+    can :manage, Customer
+    can :manage, BagLocation
+    can %i[read create update], Event
+    can :manage, Message
     if user.admin_role?
       can :manage, :all
       can :access, :rails_admin
