@@ -46,8 +46,8 @@
   <tbody>
   <% @customer.text_chats.each do |text_chat| %>
     <tr>
-      <td><%= text_chat.message_text unless text_chat.response %></td>
-      <td><%= text_chat.message_text if text_chat.response %></td>
+      <td><%= simple_format(text_chat.message_text) unless text_chat.response %></td>
+      <td><%= simple_format(text_chat.message_text) if text_chat.response %></td>
     </tr>
   <% end %>
   </tbody>

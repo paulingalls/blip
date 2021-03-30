@@ -17,7 +17,7 @@
       <tr>
         <th scope="row"><%= link_to (index + 1).to_s, message %></th>
         <td><%= message.key %></td>
-        <td><%= message.value %></td>
+        <td><%= simple_format(message.value) %></td>
         <td>
           <%= link_to edit_message_path(message) do %>
             <%= fa_icon "edit" %>
