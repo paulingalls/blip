@@ -1,17 +1,17 @@
-<p>
+<div class="mb-3">
   <strong>First name:</strong>
   <%= @customer.first_name %>
-</p>
+</div>
 
-<p>
+<div class="mb-3">
   <strong>Last name:</strong>
   <%= @customer.last_name %>
-</p>
+</div>
 
-<p>
+<div class="mb-3">
   <strong>Phone number:</strong>
   <%= @customer.formatted_phone %>
-</p>
+</div>
 
 <strong>Events Attended</strong>
 <table class="table">
@@ -34,7 +34,32 @@
   </tbody>
 </table>
 
+<strong>Chat</strong>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Message Sent</th>
+    <th scope="col">Message Received</th>
+  </tr>
+  </thead>
 
+  <tbody>
+  <% @customer.text_chats.each do |text_chat| %>
+    <tr>
+      <td><%= text_chat.message_text unless text_chat.response %></td>
+      <td><%= text_chat.message_text if text_chat.response %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<div class="mb-3">
+<%= link_to new_customer_text_chat_path(@customer) do %>
+  <button type="button" class="px-5 btn btn-success">New Text Message</button>
+<% end %>
+</div>
+
+<div class="mb-3">
+  <%= link_to 'Edit', edit_customer_path(@customer) %> |
+  <%= link_to 'Back', customers_path %>
+</div>

@@ -8,21 +8,11 @@ class BagLocation < ApplicationRecord
   validates :location, presence: true
 
   def notify_customer
-    client = Twilio::REST::Client.new
-    client.messages.create(
-      from: ENV.fetch('TWILIO_PHONE_NUMBER'),
-      to: customer.phone_number,
-      body: created_message
-    )
+    customer.send_text_message(created_message)
   end
 
   def remind_customer
-    client = Twilio::REST::Client.new
-    client.messages.create(
-      from: ENV.fetch('TWILIO_PHONE_NUMBER'),
-      to: customer.phone_number,
-      body: reminder_message
-    )
+    customer.send_text_message(reminder_message)
   end
 
   private

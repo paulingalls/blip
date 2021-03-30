@@ -1,0 +1,11 @@
+<p>
+  <strong>Message text:</strong>
+  <%= @text_chat.message_text %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @customer.full_name %>
+</p>
+
+<%= link_to 'Back', customer_text_chats_path(@customer) %>

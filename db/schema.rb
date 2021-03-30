@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_013543) do
+ActiveRecord::Schema.define(version: 2021_03_30_024303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2021_03_28_013543) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "text_chats", force: :cascade do |t|
+    t.string "message_text", null: false
+    t.bigint "customer_id", null: false
+    t.boolean "response", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_text_chats_on_customer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,4 +75,5 @@ ActiveRecord::Schema.define(version: 2021_03_28_013543) do
 
   add_foreign_key "bag_locations", "customers"
   add_foreign_key "bag_locations", "events"
+  add_foreign_key "text_chats", "customers"
 end

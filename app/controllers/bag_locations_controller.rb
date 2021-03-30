@@ -32,7 +32,7 @@ class BagLocationsController < ApplicationController
 
     respond_to do |format|
       if @bag_location.save
-        format.html { redirect_to event_path(@event), notice: 'Bag location was successfully created.' }
+        format.html { redirect_to @event, notice: 'Bag location was successfully created.' }
         format.json { render :show, status: :created, location: @bag_location }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +45,10 @@ class BagLocationsController < ApplicationController
   def update
     respond_to do |format|
       if @bag_location.update(bag_location_params)
-        format.html { redirect_to event_bag_location_path(@event), notice: 'Bag location was successfully updated.' }
+        format.html do
+          redirect_to event_bag_location_path(@event, @bag_location),
+                      notice: 'Bag location was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @bag_location }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,7 +61,7 @@ class BagLocationsController < ApplicationController
   def destroy
     @bag_location.destroy
     respond_to do |format|
-      format.html { redirect_to event_bag_locations_path(@event, @bag_location), notice: 'Bag location was successfully destroyed.' }
+      format.html { redirect_to event_bag_locations_path(@event), notice: 'Bag location was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

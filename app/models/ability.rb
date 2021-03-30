@@ -32,6 +32,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     user ||= User.new
     can :manage, Customer
+    can :manage, TextChat
     can :manage, BagLocation
     can %i[read create update], Event
     can :manage, Message

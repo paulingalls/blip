@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   before_save :normalize_phone
 
   has_many :bag_locations
+  has_many :text_chats
   has_many :events, through: :bag_locations
 
   validates :first_name, presence: true
@@ -26,6 +27,15 @@ class Customer < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def send_text_message(message_text)
+    client = Twilio::REST::Client.new
+    client.messages.create(
+      from: ENV.fetch('TWILIO_PHONE_NUMBER'),
+      to: phone_number,
+      body: message_text
+    )
   end
 
   private
