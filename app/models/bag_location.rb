@@ -28,10 +28,12 @@ class BagLocation < ApplicationRecord
   end
 
   def filter_message(message)
-    message.sub! '%first_name%', customer.first_name
-    message.sub! '%last_name%', customer.last_name
-    message.sub! '%bag_location%', location
-    message.sub! '%claim_number%', claim_number.to_s(10)
+    message.gsub! '%first_name%', customer.first_name
+    message.gsub! '%last_name%', customer.last_name
+    message.gsub! '%bag_location%', location
+    message.gsub! '%claim_number%', claim_number.to_s(10)
+    message.gsub! '%event_name%', event.name
+    message.gsub! '%event_date%', event.date.to_s(:long)
     message
   end
 end
