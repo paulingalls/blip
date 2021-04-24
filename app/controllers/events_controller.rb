@@ -63,6 +63,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def complete
+    @event.locked = true
+    respond_to do |format|
+      if @event.save
+        format.html { redirect_to @event, notice: 'Event was successfully locked.' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -72,6 +85,6 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :date, :cost)
+    params.require(:event).permit(:name, :date, :cost, :locked)
   end
 end

@@ -11,16 +11,6 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= form.label :location, class: 'form-label'%>
-    <%= form.text_field :location, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :claim_number, class: 'form-label'%>
-    <%= form.number_field :claim_number, class: 'form-control' %>
-  </div>
-
   <%= form.fields_for :customer, @bag_location.customer do |customer_form| %>
     <div class="mb-3">
       <%= customer_form.label :first_name, class: 'form-label' %>
@@ -35,6 +25,17 @@
       <%= customer_form.telephone_field :phone_number, class: 'form-control' %>
     </div>
   <% end %>
+
+  <div class="mb-3">
+    <%= form.label :location, class: 'form-label'%>
+    <%= form.text_field :location, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :claim_number, class: 'form-label'%>
+    <%= form.number_field :claim_number, class: 'form-control' %>
+  </div>
+
   <div class="py-3">
     <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </div>

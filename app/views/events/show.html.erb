@@ -1,8 +1,12 @@
 <h1>
   <%= @event.name %>
-  <% if can? :access, rails_admin %>
-    <%= link_to edit_event_path(@event), class: '' do %>
-      <%= fa_icon "edit" %>
+  <% if can? :edit, Event %>
+    <% if @event.locked %>
+      <%= fa_icon "lock" %>
+    <% else %>
+      <%= link_to edit_event_path(@event), class: '' do %>
+        <%= fa_icon "edit" %>
+      <% end %>
     <% end %>
   <% end %>
 </h1>
@@ -34,7 +38,7 @@
   </thead>
 
   <tbody>
-  <% @event.bag_locations.each_with_index do |bag_location, index| %>
+  <% @event.bag_locations.each do |bag_location| %>
     <tr>
       <td><%= bag_location.location %>-<%= bag_location.claim_number %></td>
       <td><%= bag_location.customer.full_name %></td>
@@ -54,10 +58,20 @@
   </tbody>
 </table>
 
-<%= link_to closing_event_path do %>
-  <button type="button" class="px-5 btn btn-danger">Remind Everyone!</button>
+<% unless @event.locked %>
+  <div class="row">
+    <div class="col">
+      <%=  link_to closing_event_path do  %>
+      <button type="button" class="px-5 btn btn-danger">Remind Everyone!</button>
+      <%  end  %>
+    </div>
+    <div class="col">
+      <%=  link_to complete_event_path do  %>
+      <button type="button" class="px-5 btn btn-danger">Event Complete - Lock It</button>
+      <%  end  %>
+    </div>
+  </div>
 <% end %>
-
 
 <div class="py-5">
   <%= link_to 'Edit Event', edit_event_path(@event) %> |

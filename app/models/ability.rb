@@ -34,7 +34,7 @@ class Ability
     can :manage, Customer
     can :manage, TextChat
     can :manage, BagLocation
-    can %i[read create update], Event
+    can %i[read create update complete], Event
     can :manage, Message
     if user.admin_role?
       can :manage, :all

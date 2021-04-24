@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :events do
     get 'closing', on: :member
+    get 'complete', on: :member
     resources :bag_locations do
       member do
         get 'remind'

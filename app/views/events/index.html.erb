@@ -6,23 +6,28 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Date</th>
-      <th scope="col" colspan="2"></th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @events.each_with_index do |event, index| %>
       <tr>
-        <th scope="row"><%= link_to (index + 1).to_s, event %></th>
-        <td><%= event.name %></td>
+        <th scope="row"><%= (index + 1).to_s %></th>
+        <td><%= link_to event.name.to_s, event %></td>
         <td><%= event.date %></td>
+        <td>
+          <% if event.locked %>
+            <%= fa_icon "lock" %>
+          <% end %>
+        </td>
         <td>
           <%= link_to edit_event_path(event) do %>
             <%= fa_icon "edit" %>
           <% end %>
         </td>
         <td>
-          <% if can? :access, rails_admin %>
+          <% if can? :destroy, Event %>
             <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <%= fa_icon "trash" %>
             <% end %>
