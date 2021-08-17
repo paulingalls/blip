@@ -1,12 +1,14 @@
 <h1>Events</h1>
 
-<table class="table">
+<table class="table" id="event_list">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Date</th>
-      <th scope="col" colspan="3"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -43,3 +45,9 @@
 <%= link_to new_event_path do %>
   <button type="button" class="px-5 btn btn-primary">New Event</button>
 <% end %>
+
+<script lang="text/javascript">
+    document.addEventListener('turbolinks:load', function() {
+        $('#event_list').DataTable();
+    });
+</script>
