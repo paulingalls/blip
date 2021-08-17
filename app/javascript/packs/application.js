@@ -9,8 +9,13 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import dt from "datatables.net";
 
 global.$ = require('jquery')
+
+document.addEventListener("turbolinks:load", () => {
+    dt(window, global.$);
+});
 
 Rails.start()
 Turbolinks.start()
