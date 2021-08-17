@@ -26,14 +26,14 @@
 </div>
 
 <h2><%= @event.bag_locations.all.count %> Bag Locations</h2>
-<table class="table">
+<table class="table" id="event_table" data-paging="false" data-info="false">
   <thead>
   <tr>
     <th scope="col">Location</th>
     <th scope="col">Name</th>
-    <th scope="col">Phone</th>
-    <th scope="col">Remind</th>
-    <th scope="col">Text</th>
+    <th scope="col" data-orderable="false">Phone</th>
+    <th scope="col" data-orderable="false">Remind</th>
+    <th scope="col" data-orderable="false">Text</th>
   </tr>
   </thead>
 
@@ -61,14 +61,14 @@
 <% unless @event.locked %>
   <div class="row">
     <div class="col">
-      <%=  link_to closing_event_path do  %>
-      <button type="button" class="px-5 btn btn-danger">Remind Everyone!</button>
-      <%  end  %>
+      <%= link_to closing_event_path do %>
+        <button type="button" class="px-5 btn btn-danger">Remind Everyone!</button>
+      <% end %>
     </div>
     <div class="col">
-      <%=  link_to complete_event_path do  %>
-      <button type="button" class="px-5 btn btn-danger">Event Complete - Lock It</button>
-      <%  end  %>
+      <%= link_to complete_event_path do %>
+        <button type="button" class="px-5 btn btn-danger">Event Complete - Lock It</button>
+      <% end %>
     </div>
   </div>
 <% end %>
@@ -78,3 +78,9 @@
   <%= link_to 'All Bags', event_bag_locations_path(@event) %> |
   <%= link_to 'All Events', events_path %>
 </div>
+
+<script lang="text/javascript">
+    document.addEventListener('turbolinks:load', function() {
+        $('#event_table').DataTable();
+    });
+</script>

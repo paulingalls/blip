@@ -1,42 +1,42 @@
 <h1>Events</h1>
 
-<table class="table" id="event_list">
+<table class="table" id="event_list" data-paging="false" data-info="false">
   <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Date</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
+  <tr>
+    <th scope="col" data-orderable="false">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Date</th>
+    <th scope="col" data-orderable="false"></th>
+    <th scope="col" data-orderable="false"></th>
+    <th scope="col" data-orderable="false"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @events.each_with_index do |event, index| %>
-      <tr>
-        <th scope="row"><%= (index + 1).to_s %></th>
-        <td><%= link_to event.name.to_s, event %></td>
-        <td><%= event.date %></td>
-        <td>
-          <% if event.locked %>
-            <%= fa_icon "lock" %>
+  <% @events.each_with_index do |event, index| %>
+    <tr>
+      <th scope="row"><%= (index + 1).to_s %></th>
+      <td><%= link_to event.name.to_s, event %></td>
+      <td><%= event.date %></td>
+      <td>
+        <% if event.locked %>
+          <%= fa_icon "lock" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to edit_event_path(event) do %>
+          <%= fa_icon "edit" %>
+        <% end %>
+      </td>
+      <td>
+        <% if can? :destroy, Event %>
+          <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <%= fa_icon "trash" %>
           <% end %>
-        </td>
-        <td>
-          <%= link_to edit_event_path(event) do %>
-            <%= fa_icon "edit" %>
-          <% end %>
-        </td>
-        <td>
-          <% if can? :destroy, Event %>
-            <%= link_to event, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <%= fa_icon "trash" %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
@@ -47,7 +47,7 @@
 <% end %>
 
 <script lang="text/javascript">
-    document.addEventListener('turbolinks:load', function() {
+    document.addEventListener('turbolinks:load', function () {
         $('#event_list').DataTable();
     });
 </script>
