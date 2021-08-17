@@ -55,10 +55,18 @@ class EventsController < ApplicationController
     end
   end
 
+  # Get /events/closing
   def closing
-    @event.bag_locations.each(&:remind_customer)
+    errors = []
+    @event.bag_locations.each do |bag_location|
+      bag_location.remind_customer
+    rescue StandardError => e
+      errors.append(e.message)
+    end
     respond_to do |format|
-      format.html { redirect_to @event, notice: 'Reminders sent.' }
+      format.html do
+        redirect_to @event, notice: "Reminders sent.  #{errors.empty? ? '' : "Errors: #{errors}"}"
+      end
       format.json { head :no_content }
     end
   end

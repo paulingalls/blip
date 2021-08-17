@@ -9,10 +9,14 @@ class BagLocation < ApplicationRecord
 
   def notify_customer
     customer.send_text_message(created_message)
+  rescue StandardError => e
+    raise StandardError, "Problem texting: #{customer.formatted_phone}: #{e.message}"
   end
 
   def remind_customer
     customer.send_text_message(reminder_message)
+  rescue StandardError => e
+    raise StandardError, "Problem texting: #{customer.formatted_phone}: #{e.message}"
   end
 
   private
